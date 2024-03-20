@@ -1,6 +1,6 @@
 theme: jekyll-theme-slate
 title: Leap Patron Management API Documentation
-logo: assets/Leap_PatronManagement_Logo_White.png
+logo: assets/Leap_PatronManagement_Logo_White.svg
 
 github:
   is_project_page: false
