@@ -3,10 +3,10 @@
 ### Overview
 First, you should review our [Glossary](glossary.md) so that the terminology used below is clear. 
 
-The Public Event List endpoint provides a machine-readable (JSON) version of the PatronTicket ticketing site used by patrons to purchase tickets. The same logic used to display and hide various entities on the ticketing site is used when generating the payload returned by the endpoint.
+The Public Event List endpoint provides a machine-readable (JSON) version of your PatronManager Public Ticketing Site. The same logic used to display and hide various entities on the ticketing site is used when generating the payload returned by the endpoint.
 
 ### URL
-Every PatronManager organization has its own unique domain (ex. https://sillytickets.secure.force.com/ticket). The Public Event List resource is located at 'PatronTicket__PublicApiEventList'. For example: https://sillytickets.secure.force.com/ticket/PatronTicket__PublicApiEventList)
+Every PatronManager organization has its own unique domain (ex. https://sillytickets.my.salesforce-sites.com/ticket). The Public Event List resource is located at 'PatronTicket__PublicApiEventList'. For example: https://sillytickets.my.salesforce-sites.com/ticket/PatronTicket__PublicApiEventList)
 
 The only valid HTTP method is GET. 
 
@@ -163,16 +163,16 @@ To get the custom included in the Public Event List payload, first create a Fiel
   "events" : [ {
     "type" : "Tickets",
     "sortOrder" : 10,
-    "smallImagePath" : "https://sillytickets.secure.force.com/ticket/servlet/servlet.ImageServer?id=0155Y000004o9cW&oid=00D5Y000002VmTb&lastMod=1624384870",
-    "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/events/a178A000002h2L0QAI",
+    "smallImagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=0155Y000004o9cW&oid=00D5Y000002VmTb&lastMod=1624384870",
+    "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/events/a178A000002h2L0QAI",
     "name" : "Romeo & Juliet",
-    "largeImagePath" : "https://sillytickets.secure.force.com/ticket/servlet/servlet.ImageServer?id=0155Y000004o9cW&oid=00D5Y000002VmTb&lastMod=1624384870",
+    "largeImagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=0155Y000004o9cW&oid=00D5Y000002VmTb&lastMod=1624384870",
     "instances" : [ {
       "venueId" : "a1A8A000001ZUvKUAW",
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "On Sale",
-      "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/instances/a0W8A000002uugYUAQ",
+      "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uugYUAQ",
       "noSaleMessage" : null,
       "name" : "April 15, 2021, 8 PM",
       "isPasscodeEligible" : false,
@@ -255,7 +255,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "Not on sale yet",
-      "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/instances/a0W8A000002uugdUAA",
+      "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uugdUAA",
       "noSaleMessage" : "<p>Hold your horses! Tickets for this performance are not available for sale yet. Coming soon!</p>",
       "name" : "May 15, 2021, 8 PM",
       "isPasscodeEligible" : false,
@@ -346,14 +346,14 @@ To get the custom included in the Public Event List payload, first create a Fiel
   }, {
     "type" : "Tickets",
     "sortOrder" : 11,
-    "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/events/a178A000002h2L5QAI",
+    "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/events/a178A000002h2L5QAI",
     "name" : "Hamlet",
     "instances" : [ {
       "venueId" : "a1A8A000001ZUvKUAW",
       "soldOut" : false,
       "seatingType" : "Pick Your Own Seats",
       "saleStatus" : "On Sale",
-      "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/instances/a0W8A000002uuk6UAA",
+      "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uuk6UAA",
       "noSaleMessage" : null,
       "name" : "May 1, 7 PM",
       "isPasscodeEligible" : false,
@@ -457,7 +457,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "soldOut" : false,
       "seatingType" : "Pick Your Own Seats",
       "saleStatus" : "Not on sale yet",
-      "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/instances/a0W8A000002uugiUAA",
+      "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uugiUAA",
       "noSaleMessage" : "<p>Here's a custom \"Not On Sale Yet\" message</p>",
       "name" : "June 1, 7 PM",
       "isPasscodeEligible" : false,
@@ -569,14 +569,14 @@ To get the custom included in the Public Event List payload, first create a Fiel
   }, {
     "type" : "Subscription",
     "sortOrder" : 15,
-    "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/events/a178A000002h2MwQAI",
+    "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/events/a178A000002h2MwQAI",
     "name" : "Test Subscription",
     "instances" : [ {
       "venueId" : null,
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "On Sale",
-      "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/instances/a0W8A000002uukVUAQ",
+      "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uukVUAQ",
       "noSaleMessage" : null,
       "name" : "4-Show Fixed - Mixed GA / PYOS",
       "isPasscodeEligible" : false,
@@ -649,14 +649,14 @@ To get the custom included in the Public Event List payload, first create a Fiel
   }, {
     "type" : "Membership",
     "sortOrder" : 20,
-    "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/instances/a178A000002gtOLQAY",
+    "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a178A000002gtOLQAY",
     "name" : "Membership",
     "instances" : [ {
       "venueId" : null,
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "On Sale",
-      "purchaseUrl" : "https://sillytickets.secure.force.com/ticket/#/instances/a178A000002gtOLQAY",
+      "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a178A000002gtOLQAY",
       "noSaleMessage" : null,
       "name" : "Membership",
       "isPasscodeEligible" : false,
