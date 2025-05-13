@@ -22,8 +22,8 @@ By default the API will return all future events. If an organization has a high 
 
 | Parameter| 	Description| 	Type| 	Required|	Notes|
 | ---      | ---         | ---  | ---       | ---  |
-|startDate|	Earliest Event Date to Retrieve  |	date(YYYY-MM-DD)|	Optional|	API will **only** return future events, even if start date is in the past|
-|endDate| Latest Event Date	|date(YYYY-MM-DD)	|Optional|	|
+|startDate|	Earliest Event Date to Retrieve  |	date(YYYY-MM-DD)|	Optional|	API will **only** return future events, even if start date is in the past. If not specified this value is today|
+|endDate| Latest Event Date	|date(YYYY-MM-DD)	|Optional| If not specified, all events after startDate are returned|
 
 For example: `https://sillytickets.my.salesforce-sites.com/ticket/PatronTicket__PublicApiEventList?startDate=2030-01-01&endDate=2030-02-01`
 
