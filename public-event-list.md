@@ -16,6 +16,20 @@ The server will GZIP the response if you provide the proper 'Accepts-Encoding' h
 
 You should be able to load the URL in your web browser and see the JSON payload. If you use a tool like Firefox or Chrome Dev Tools, you should be able to directly browse the JSON entities under the 'Network' tab.
 
+### Query Parameters
+
+By default the API will return all future events. If an organization has a high number of event instance records then this can hit limits. In those cases it is recommended to make use of the following query parameters to limit the volume of returned records. 
+
+| Parameter| 	Description| 	Type| 	Required|	Notes|
+| ---      | ---         | ---  | ---       | ---  |
+|startDate|	Earliest Event Date to Retrieve  |	date(YYYY-MM-DD)|	Optional|	API will **only** return future events, even if start date is in the past|
+|endDate| Latest Event Date	|date(YYYY-MM-DD)	|Optional|	|
+
+For example: `https://sillytickets.my.salesforce-sites.com/ticket/PatronTicket__PublicApiEventList?startDate=2030-01-01&endDate=2030-02-01`
+
+will return events between January 1st, 2030 and February 1st, 2030 inclusively
+
+
 ### Document Structure
 ```javascript
 {     
