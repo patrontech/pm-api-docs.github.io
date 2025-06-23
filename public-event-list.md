@@ -39,6 +39,7 @@ class TicketableEvent
 	public String smallImagePath; // URL for the small image for this TE
 	public String largeImagePath; // URL for the large image for this TE
 	public String purchaseUrl; // URL to the page containing links to all EIs
+	public String instanceDisplay; // How the instances are displayed for selection ("Date/Time" or "List")
 	public Map<String,Object> custom; //Enumerates fields from the FieldSet defined by settings.TicketableEventPublicFieldSet__c
 	public List<EventInstance> instances = new List<EventInstance>();
 }
@@ -69,6 +70,7 @@ class Dates
 	public DateTime ISO8601;
 	public String LONG_MONTH_DAY_YEAR; // "September 22, 2012"
 	public String YYYYMMDD; // "20120922"
+	public String TIME_STRING; // "7:30 PM"
 }
 
 class TicketAllocation
@@ -165,6 +167,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
     "sortOrder" : 10,
     "smallImagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=0155Y000004o9cW&oid=00D5Y000002VmTb&lastMod=1624384870",
     "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/events/a178A000002h2L0QAI",
+    "instanceDisplay": "Date/Time",
     "name" : "Romeo & Juliet",
     "largeImagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=0155Y000004o9cW&oid=00D5Y000002VmTb&lastMod=1624384870",
     "instances" : [ {
@@ -180,7 +183,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "formattedDates" : {
         "YYYYMMDD" : "20210416",
         "LONG_MONTH_DAY_YEAR" : "April 16, 2021",
-        "ISO8601" : "2021-04-16T00:00:00.000Z"
+        "ISO8601" : "2021-04-16T00:00:00.000Z",
+        "TIME_STRING" : "12:00 AM"
       },
       "eventName" : "Romeo & Juliet",
       "eventId" : "a178A000002h2L0QAI",
@@ -263,7 +267,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "formattedDates" : {
         "YYYYMMDD" : "20210516",
         "LONG_MONTH_DAY_YEAR" : "May 16, 2021",
-        "ISO8601" : "2021-05-16T00:00:00.000Z"
+        "ISO8601" : "2021-05-16T00:00:00.000Z",
+        "TIME_STRING" : "12:00 AM"
       },
       "eventName" : "Romeo & Juliet",
       "eventId" : "a178A000002h2L0QAI",
@@ -347,6 +352,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
     "type" : "Tickets",
     "sortOrder" : 11,
     "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/events/a178A000002h2L5QAI",
+    "instanceDisplay": "List",
     "name" : "Hamlet",
     "instances" : [ {
       "venueId" : "a1A8A000001ZUvKUAW",
@@ -361,7 +367,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "formattedDates" : {
         "YYYYMMDD" : "20210501",
         "LONG_MONTH_DAY_YEAR" : "May 1, 2021",
-        "ISO8601" : "2021-05-01T23:00:00.000Z"
+        "ISO8601" : "2021-05-01T23:00:00.000Z",
+        "TIME_STRING" : "11:00 PM"
       },
       "eventName" : "Hamlet",
       "eventId" : "a178A000002h2L5QAI",
@@ -465,7 +472,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "formattedDates" : {
         "YYYYMMDD" : "20210601",
         "LONG_MONTH_DAY_YEAR" : "June 1, 2021",
-        "ISO8601" : "2021-06-01T23:00:00.000Z"
+        "ISO8601" : "2021-06-01T23:00:00.000Z",
+        "TIME_STRING" : "11:00 PM"
       },
       "eventName" : "Hamlet",
       "eventId" : "a178A000002h2L5QAI",
@@ -584,7 +592,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "formattedDates" : {
         "YYYYMMDD" : "20210430",
         "LONG_MONTH_DAY_YEAR" : "April 30, 2021",
-        "ISO8601" : "2021-04-30T23:00:00.000Z"
+        "ISO8601" : "2021-04-30T23:00:00.000Z",
+        "TIME_STRING" : "11:00 PM"
       },
       "eventName" : "Test Subscription",
       "eventId" : "a178A000002h2MwQAI",
@@ -664,7 +673,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "formattedDates" : {
         "YYYYMMDD" : "21991231",
         "LONG_MONTH_DAY_YEAR" : "December 31, 2199",
-        "ISO8601" : "2199-12-31T08:00:00.000Z"
+        "ISO8601" : "2199-12-31T08:00:00.000Z",
+        "TIME_STRING" : "8:00 AM"
       },
       "eventName" : "Membership",
       "eventId" : "a178A000002gtOLQAY",
