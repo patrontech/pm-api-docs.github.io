@@ -578,6 +578,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
     "type" : "Subscription",
     "sortOrder" : 15,
     "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/events/a178A000002h2MwQAI",
+    "instanceDisplay": "List",
     "name" : "Test Subscription",
     "instances" : [ {
       "venueId" : null,
@@ -659,6 +660,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
     "type" : "Membership",
     "sortOrder" : 20,
     "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a178A000002gtOLQAY",
+    "instanceDisplay": "List",
     "name" : "Membership",
     "instances" : [ {
       "venueId" : null,
