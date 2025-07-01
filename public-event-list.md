@@ -184,7 +184,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
         "YYYYMMDD" : "20210416",
         "LONG_MONTH_DAY_YEAR" : "April 16, 2021",
         "ISO8601" : "2021-04-16T00:00:00.000Z",
-        "TIME_STRING" : "12:00 AM"
+        "TIME_STRING" : "8:00 PM"
       },
       "eventName" : "Romeo & Juliet",
       "eventId" : "a178A000002h2L0QAI",
@@ -268,7 +268,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
         "YYYYMMDD" : "20210516",
         "LONG_MONTH_DAY_YEAR" : "May 16, 2021",
         "ISO8601" : "2021-05-16T00:00:00.000Z",
-        "TIME_STRING" : "12:00 AM"
+        "TIME_STRING" : "8:00 PM"
       },
       "eventName" : "Romeo & Juliet",
       "eventId" : "a178A000002h2L0QAI",
@@ -368,7 +368,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
         "YYYYMMDD" : "20210501",
         "LONG_MONTH_DAY_YEAR" : "May 1, 2021",
         "ISO8601" : "2021-05-01T23:00:00.000Z",
-        "TIME_STRING" : "11:00 PM"
+        "TIME_STRING" : "7:00 PM"
       },
       "eventName" : "Hamlet",
       "eventId" : "a178A000002h2L5QAI",
@@ -473,7 +473,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
         "YYYYMMDD" : "20210601",
         "LONG_MONTH_DAY_YEAR" : "June 1, 2021",
         "ISO8601" : "2021-06-01T23:00:00.000Z",
-        "TIME_STRING" : "11:00 PM"
+        "TIME_STRING" : "7:00 PM"
       },
       "eventName" : "Hamlet",
       "eventId" : "a178A000002h2L5QAI",
@@ -594,7 +594,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
         "YYYYMMDD" : "20210430",
         "LONG_MONTH_DAY_YEAR" : "April 30, 2021",
         "ISO8601" : "2021-04-30T23:00:00.000Z",
-        "TIME_STRING" : "11:00 PM"
+        "TIME_STRING" : "7:00 PM"
       },
       "eventName" : "Test Subscription",
       "eventId" : "a178A000002h2MwQAI",
@@ -676,7 +676,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
         "YYYYMMDD" : "21991231",
         "LONG_MONTH_DAY_YEAR" : "December 31, 2199",
         "ISO8601" : "2199-12-31T08:00:00.000Z",
-        "TIME_STRING" : "8:00 AM"
+        "TIME_STRING" : "4:00 AM"
       },
       "eventName" : "Membership",
       "eventId" : "a178A000002gtOLQAY",
