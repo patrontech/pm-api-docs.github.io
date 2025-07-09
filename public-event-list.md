@@ -16,6 +16,20 @@ The server will GZIP the response if you provide the proper 'Accepts-Encoding' h
 
 You should be able to load the URL in your web browser and see the JSON payload. If you use a tool like Firefox or Chrome Dev Tools, you should be able to directly browse the JSON entities under the 'Network' tab.
 
+### Query Parameters
+
+By default, the response will include all future Event Instances. For organizations with a large number of future Event Instances, large response payloads and timeouts can be mitigated by limiting the date range using the `startDatetime` and `endDatetime` query parameters.
+
+| Parameter| 	Description| 	Type| 	Required|	Notes|
+| ---      | ---         | ---  | ---       | ---  |
+|startDatetime|	Earliest Event Instance Date to Retrieve  |	datetime(ISO-8601)|	Optional|	API will **only** return future event instances, even if startDatetime is in the past. If not specified this value is now|
+|endDatetime| Latest Event Instance Date	|datetime(ISO-8601)	|Optional| If not specified, all event instances after startDatetime are returned|
+
+For example: `https://sillytickets.my.salesforce-sites.com/ticket/PatronTicket__PublicApiEventList?startDatetime=2030-01-01T00%3A00%3A00Z&endDatetime=2030-02-01T00%3A00%3A00Z`
+
+will return events between January 1st, 2030 00:00 UTC and February 1st, 2030 00:00 UTC inclusively
+
+
 ### Document Structure
 ```javascript
 {     
