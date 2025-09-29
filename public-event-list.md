@@ -22,12 +22,21 @@ By default, the response will include all future Event Instances. For organizati
 
 | Parameter| 	Description| 	Type| 	Required|	Notes|
 | ---      | ---         | ---  | ---       | ---  |
+|version| Version of api | X.Y (ex. 2.0) | Optional | See [Version](#version) section for more details  
 |startDatetime|	Earliest Event Instance Date to Retrieve  |	datetime(ISO-8601)|	Optional|	API will **only** return future event instances, even if startDatetime is in the past. If not specified this value is now|
 |endDatetime| Latest Event Instance Date	|datetime(ISO-8601)	|Optional| If not specified, all event instances after startDatetime are returned|
 
 For example: `https://sillytickets.my.salesforce-sites.com/ticket/PatronTicket__PublicApiEventList?startDatetime=2030-01-01T00%3A00%3A00Z&endDatetime=2030-02-01T00%3A00%3A00Z`
 
 will return events between January 1st, 2030 00:00 UTC and February 1st, 2030 00:00 UTC inclusively
+
+
+### Version
+
+| Version| 	Date| 	Description| 
+| ---      | ---         | ---  |
+| 2.0      | 12/08/2025         | <ul><li>Adds Retail event types to payload.</li> <li>Allows for instance based sort order.</li></ul>   |
+| 1.0      | -        | <ul><li>Initial version of the Event Inventory API</li></ul>  |
 
 
 ### Document Structure
@@ -49,7 +58,7 @@ class TicketableEvent
 	public String detail; // Rich text (HTML) details
 	public String category; // Arbitrary list of category labels separated by semi-colon
 	public Integer sortOrder;
-	public String type; // Currently, "Tickets", "Subscription" or "Membership"
+	public String type; // Currently, "Tickets", "Subscription", "Membership" or "Retail" (Version >= 2.0 only)
 	public String smallImagePath; // URL for the small image for this TE
 	public String largeImagePath; // URL for the large image for this TE
 	public String purchaseUrl; // URL to the page containing links to all EIs
@@ -68,6 +77,7 @@ class EventInstance
 	public String detail; // Rich text (HTML) details about this specific EI
 	public Dates formattedDates = new Dates();
 	public String saleStatus; // "On Sale", "No longer on sale", "Not on sale yet"
+	public Integer sortOrder;
 	public Boolean earlyAccess = false; // True if early access to the EI is being granted as a Membership benefit
 	public String seatingType; // "General Admission" or "Pick Your Own Seats"
 	public String contentFormat; // "Standard", "Video on Demand", etc.
@@ -75,6 +85,8 @@ class EventInstance
 	public Boolean soldOut = true; // false unless all TAs are sold out
 	public String noSaleMessage; // Message to display if EI is soldOut, 'No longer on sale', or 'Not on sale yet'
 	public Boolean isPasscodeEligible = false; // True if the Event Instance is available for purchase prior to its public on-sale with the use of a Passcode
+	public String imagePath; // URL for the image for this EI
+	public String imageAltText; // Alternate text for the image for this EI
 	public Map<String,Object> custom; //Enumerates fields from the FieldSet defined by settings.EventInstancePublicFieldSet__c
 	public List<TicketAllocation> allocations = new List<TicketAllocation>();
 }
@@ -95,6 +107,8 @@ class TicketAllocation
 	public Integer sortOrder;
 	public List<TicketPriceLevel> levels = new List<TicketPriceLevel>();
 	public Boolean soldOut;
+	public String imagePath;
+	public String imageAltText;
 }
 
 class TicketPriceLevel
@@ -123,6 +137,7 @@ It is expected that the consumer of this API uses the Event Instance "name" when
 When displaying the list of TEs, with their EIs, TAs and PLs, the organization expects them to be sorted with the following precedence:
 - TicketableEvent.sortOrder
 - TicketableEvent.name
+- EventInstance.sortOrder (Version >= 2.0 only) 
 - EventInstance.formattedDates.ISO8601
 - EventInstance.name
 - TicketAllocation.sortOrder
@@ -164,6 +179,14 @@ Any custom fields added to Ticketable Event or Event Instance immediately become
 To get the custom included in the Public Event List payload, first create a Field Set on Ticketable Event or Event Instance and add the fields you wish to expose to that Field Set. Next, please contact PatronManager Client Services -- they will enable the Field Set for public view so that any fields enumerated in the Field Set are included in the "custom" key for both the TicketableEvent and EventInstance JSON schema.
 
 
+### Event Types
+The "type" attribute on TicketableEvent indicates what kind of event it is. The possible values are:
+- "Tickets"
+- "Subscription"
+- "Membership"
+- "Retail" (Version >= 2.0 only)
+
+
 ### Example
 ```javascript
 {
@@ -189,6 +212,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "On Sale",
+      "sortOrder": 1,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uugYUAQ",
       "noSaleMessage" : null,
       "name" : "April 15, 2021, 8 PM",
@@ -228,6 +252,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JXiFQAW"
         } ],
         "instanceId" : "a0W8A000002uugYUAQ",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiFQAW"
       }, {
         "sortOrder" : 2,
@@ -247,6 +273,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JXiGQAW"
         } ],
         "instanceId" : "a0W8A000002uugYUAQ",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiGQAW"
       }, {
         "sortOrder" : 3,
@@ -266,6 +294,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JXiHQAW"
         } ],
         "instanceId" : "a0W8A000002uugYUAQ",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiHQAW"
       } ]
     }, {
@@ -273,6 +303,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "Not on sale yet",
+			"sortOrder": 2,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uugdUAA",
       "noSaleMessage" : "<p>Hold your horses! Tickets for this performance are not available for sale yet. Coming soon!</p>",
       "name" : "May 15, 2021, 8 PM",
@@ -312,6 +343,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JXiKQAW"
         } ],
         "instanceId" : "a0W8A000002uugdUAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiKQAW"
       }, {
         "sortOrder" : 2,
@@ -331,6 +364,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JXiLQAW"
         } ],
         "instanceId" : "a0W8A000002uugdUAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiLQAW"
       }, {
         "sortOrder" : 3,
@@ -350,6 +385,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JXiMQAW"
         } ],
         "instanceId" : "a0W8A000002uugdUAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiMQAW"
       } ]
     } ],
@@ -373,6 +410,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "soldOut" : false,
       "seatingType" : "Pick Your Own Seats",
       "saleStatus" : "On Sale",
+			"sortOrder": 1,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uuk6UAA",
       "noSaleMessage" : null,
       "name" : "May 1, 7 PM",
@@ -406,6 +444,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JY2TQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2TQAW"
       }, {
         "sortOrder" : 1,
@@ -419,6 +459,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JY2UQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2UQAW"
       }, {
         "sortOrder" : 2,
@@ -432,6 +474,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JY2VQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2VQAW"
       }, {
         "sortOrder" : 3,
@@ -445,6 +489,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JY2WQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2WQAW"
       }, {
         "sortOrder" : 4,
@@ -458,6 +504,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JY2XQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2XQAW"
       }, {
         "sortOrder" : 5,
@@ -471,6 +519,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JY2YQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2YQAW"
       } ]
     }, {
@@ -478,6 +528,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "soldOut" : false,
       "seatingType" : "Pick Your Own Seats",
       "saleStatus" : "Not on sale yet",
+			"sortOrder": 2,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uugiUAA",
       "noSaleMessage" : "<p>Here's a custom \"Not On Sale Yet\" message</p>",
       "name" : "June 1, 7 PM",
@@ -511,6 +562,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JXiPQAW"
         } ],
         "instanceId" : "a0W8A000002uugiUAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiPQAW"
       }, {
         "sortOrder" : 1,
@@ -524,6 +577,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JXiQQAW"
         } ],
         "instanceId" : "a0W8A000002uugiUAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiQQAW"
       }, {
         "sortOrder" : 2,
@@ -537,6 +592,8 @@ To get the custom included in the Public Event List payload, first create a Fiel
           "allocationId" : "a128A000003JXiRQAW"
         } ],
         "instanceId" : "a0W8A000002uugiUAA",
+        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiRQAW"
       }, {
         "sortOrder" : 3,
@@ -599,6 +656,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "On Sale",
+      "sortOrder": 1,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uukVUAQ",
       "noSaleMessage" : null,
       "name" : "4-Show Fixed - Mixed GA / PYOS",
@@ -681,6 +739,7 @@ To get the custom included in the Public Event List payload, first create a Fiel
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "On Sale",
+			"sortOrder": 1,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a178A000002gtOLQAY",
       "noSaleMessage" : null,
       "name" : "Membership",
