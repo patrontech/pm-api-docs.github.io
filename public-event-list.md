@@ -26,7 +26,7 @@ By default, the response will include all future Event Instances. For organizati
 |startDatetime|	Earliest Event Instance Date to Retrieve  |	datetime(ISO-8601)|	Optional|	API will **only** return future event instances, even if startDatetime is in the past. If not specified this value is now|
 |endDatetime| Latest Event Instance Date	|datetime(ISO-8601)	|Optional| If not specified, all event instances after startDatetime are returned|
 
-For example: `https://sillytickets.my.salesforce-sites.com/ticket/PatronTicket__PublicApiEventList?startDatetime=2030-01-01T00%3A00%3A00Z&endDatetime=2030-02-01T00%3A00%3A00Z`
+For example: `https://sillytickets.my.salesforce-sites.com/ticket/PatronTicket__PublicApiEventList?version=2.0&startDatetime=2030-01-01T00%3A00%3A00Z&endDatetime=2030-02-01T00%3A00%3A00Z`
 
 will return events between January 1st, 2030 00:00 UTC and February 1st, 2030 00:00 UTC inclusively
 
