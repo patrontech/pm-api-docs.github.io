@@ -35,7 +35,7 @@ will return events between January 1st, 2030 00:00 UTC and February 1st, 2030 00
 
 | Version| 	Date| 	Description| 
 | ---      | ---         | ---  |
-| 2.0      | 12/08/2025         | <ul><li>Adds Retail event types to payload.</li> <li>Allows for instance based sort order.</li></ul>   |
+| 2.0      | 12/08/2025         | <ul><li>Adds Retail event types to payload.</li> <li>Honors the sortOrder value on the instance (sortOrder takes precedence over formattedDate)</li></ul>   |
 | 1.0      | -        | <ul><li>Initial version of the Event Inventory API</li></ul>  |
 
 
@@ -252,7 +252,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JXiFQAW"
         } ],
         "instanceId" : "a0W8A000002uugYUAQ",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiFQAW"
       }, {
@@ -273,7 +273,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JXiGQAW"
         } ],
         "instanceId" : "a0W8A000002uugYUAQ",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiGQAW"
       }, {
@@ -294,7 +294,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JXiHQAW"
         } ],
         "instanceId" : "a0W8A000002uugYUAQ",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiHQAW"
       } ]
@@ -303,7 +303,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "Not on sale yet",
-			"sortOrder": 2,
+      "sortOrder": 2,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uugdUAA",
       "noSaleMessage" : "<p>Hold your horses! Tickets for this performance are not available for sale yet. Coming soon!</p>",
       "name" : "May 15, 2021, 8 PM",
@@ -343,7 +343,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JXiKQAW"
         } ],
         "instanceId" : "a0W8A000002uugdUAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiKQAW"
       }, {
@@ -364,7 +364,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JXiLQAW"
         } ],
         "instanceId" : "a0W8A000002uugdUAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiLQAW"
       }, {
@@ -385,7 +385,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JXiMQAW"
         } ],
         "instanceId" : "a0W8A000002uugdUAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiMQAW"
       } ]
@@ -410,7 +410,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
       "soldOut" : false,
       "seatingType" : "Pick Your Own Seats",
       "saleStatus" : "On Sale",
-			"sortOrder": 1,
+      "sortOrder": 1,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uuk6UAA",
       "noSaleMessage" : null,
       "name" : "May 1, 7 PM",
@@ -444,7 +444,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JY2TQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2TQAW"
       }, {
@@ -459,7 +459,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JY2UQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2UQAW"
       }, {
@@ -474,7 +474,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JY2VQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2VQAW"
       }, {
@@ -489,7 +489,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JY2WQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2WQAW"
       }, {
@@ -504,7 +504,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JY2XQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2XQAW"
       }, {
@@ -519,7 +519,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JY2YQAW"
         } ],
         "instanceId" : "a0W8A000002uuk6UAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JY2YQAW"
       } ]
@@ -528,7 +528,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
       "soldOut" : false,
       "seatingType" : "Pick Your Own Seats",
       "saleStatus" : "Not on sale yet",
-			"sortOrder": 2,
+      "sortOrder": 2,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a0W8A000002uugiUAA",
       "noSaleMessage" : "<p>Here's a custom \"Not On Sale Yet\" message</p>",
       "name" : "June 1, 7 PM",
@@ -562,7 +562,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JXiPQAW"
         } ],
         "instanceId" : "a0W8A000002uugiUAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiPQAW"
       }, {
@@ -577,7 +577,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JXiQQAW"
         } ],
         "instanceId" : "a0W8A000002uugiUAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiQQAW"
       }, {
@@ -592,7 +592,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
           "allocationId" : "a128A000003JXiRQAW"
         } ],
         "instanceId" : "a0W8A000002uugiUAA",
-        "imagePath" : "https://fun-business-5001-dev-ed.scratch.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
+        "imagePath" : "https://sillytickets.my.salesforce-sites.com/ticket/servlet/servlet.ImageServer?id=015E100000DRkaO&oid=00DE100000KIuLB&lastMod=1758912375",
         "imageAltText" : "STOCK TEST",
         "id" : "a128A000003JXiRQAW"
       }, {
@@ -739,7 +739,7 @@ The "type" attribute on TicketableEvent indicates what kind of event it is. The 
       "soldOut" : false,
       "seatingType" : "General Admission",
       "saleStatus" : "On Sale",
-			"sortOrder": 1,
+      "sortOrder": 1,
       "purchaseUrl" : "https://sillytickets.my.salesforce-sites.com/ticket/#/instances/a178A000002gtOLQAY",
       "noSaleMessage" : null,
       "name" : "Membership",
